@@ -1,0 +1,13 @@
+version: '2.3'
+services:
+  pytorch:
+    build: ./
+    restart: always
+    ports:
+      - 8883:8888
+      - 6003:6006
+    runtime: nvidia
+    volumes:
+      - ./data:/home/me
+      - ./data:/home/me/.local/share/jupyter/runtime/
+      - ./data:/workspace

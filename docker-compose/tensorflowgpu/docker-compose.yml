@@ -1,0 +1,12 @@
+version: '2.3'
+
+services:
+  tf-gpu:
+    image: tensorflow/tensorflow:latest-gpu-jupyter
+    restart: always
+    ports:
+      - 8881:8888
+    runtime: nvidia
+    volumes:
+      - ./data:/tf
+      - ./data:/root/.local/share/jupyter/runtime/

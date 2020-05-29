@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  sonarqube:
+    image: sonarqube:7.1
+    ports:
+        - "9000:9000"
+    links:
+        - postgres
+    environment:
+        - SONARQUBE_JDBC_URL:jdbc:postgresql://db:5432/sonar
+
+  postgres:
+    image: postgres:9.6.15
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar

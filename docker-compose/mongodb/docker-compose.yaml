@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    mongodb:
+      image: mongo:4.0.12
+      container_name: mongodb4012
+      ports:
+        - 27017:27017
+      environment:
+        - MONGO_INITDB_DATABASE=test
+        - MONGO_INITDB_ROOT_USERNAME=root
+        - MONGO_INITDB_ROOT_PASSWORD=root
+      volumes:
+          - ./data:/data/db

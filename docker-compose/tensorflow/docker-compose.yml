@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  tf-cpu:
+    image: tensorflow/tensorflow:latest-jupyter
+    restart: always
+    ports:
+      - 8882:8888
+    volumes:
+      - ./data:/tf
+      - ./data:/root/.local/share/jupyter/runtime/

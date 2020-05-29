@@ -1,0 +1,14 @@
+docker run -d \
+    -p 25:25 \
+    -p 180:80 \
+    -p 110:110 \
+    -p 143:143 \
+    -p 1443:443 \
+    -p 587:587 \
+    -p 993:993 \
+    -p 995:995 \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v $(realpath ./data):/data \
+    --name "mailserver" \
+    -h "mail.dev.chenshaowen.com" \
+    -t analogic/poste.io
