@@ -5,8 +5,8 @@ services:
     image: fauria/vsftpd:latest
     restart: always
     ports:
-      - 120:20
-      - 121:21
+      - 0.0.0.0:120:20
+      - 0.0.0.0:121:21
       - 21100-21110:21100-21110
     volumes:
       - ./data:/home/vsftpd
