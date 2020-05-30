@@ -10,4 +10,5 @@ services:
       - 21100-21110:21100-21110
     volumes:
       - ./data:/home/vsftpd
+      - ./etc/virtual-users.txt:/etc/vsftpd/virtual-users.txt
       - ./log:/var/log/vsftpd
