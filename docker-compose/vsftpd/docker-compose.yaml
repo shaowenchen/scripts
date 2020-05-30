@@ -9,7 +9,9 @@ services:
       - 0.0.0.0:121:21
       - 21100-21110:21100-21110
     volumes:
-      - ./data:/home/vsftpd/username
+      - ../data:/var/ftp/pub
+      - ./etc/vsftpd.conf:/etc/vsftpd/vsftpd.conf
+      - ./log:/var/log/
     environment:
       - FTP_USER=username
       - FTP_PASS=password
