@@ -4,6 +4,7 @@ services:
   vsftpd:
     image: fauria/vsftpd:latest
     restart: always
+    network_mode: "host"
     ports:
       - 0.0.0.0:120:20
       - 0.0.0.0:121:21
