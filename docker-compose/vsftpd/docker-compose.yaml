@@ -11,7 +11,7 @@ services:
     volumes:
       - ./data:/home/vsftpd
       - ./etc/vsftpd.conf:/etc/vsftpd/vsftpd.conf
-      - ./log/vsftpd.log:/var/log/vsftpd/vsftpd.log
+      - ./log/:/var/log/vsftpd/
     environment:
       - FTP_USER=username
       - FTP_PASS=password
