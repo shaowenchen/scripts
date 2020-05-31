@@ -13,7 +13,7 @@ RUN /opt/conda/bin/conda install -y nodejs opencv Cython tensorflow pandas sciki
 
 RUN jupyter labextension install jupyterlab_tensorboard
 
-RUN pip install torchtext jupyter_tensorboard torchvision scikit-image --index=http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+RUN pip install keras torchtext jupyter_tensorboard torchvision scikit-image --index=http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
 
 RUN mkdir -p /home/me && chmod 1777 /home/me
 
