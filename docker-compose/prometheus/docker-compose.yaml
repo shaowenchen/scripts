@@ -1,0 +1,71 @@
+version: '3.0'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config:/prometheus
+      - ./data/prometheus:/data
+    command:
+      - '--config.file=/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/data'
+    ports:
+      - 9090:9090
+    depends_on:
+      - alertmanager
+    restart: always
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    volumes:
+      - ./config:/prometheus
+      - ./data/alertmanager:/data
+    command:
+      - '--config.file=/prometheus/alertmanager.yml'
+      - '--storage.path=/data'
+    ports:
+      - 9093:9093
+
+  node:
+    image: prom/node-exporter:latest
+    ports:
+      - 9100:9100
+    restart: always
+
+  cadvisor:
+    image: google/cadvisor:latest
+    ports:
+      - 9880:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+  collectd:
+    image: prom/collectd-exporter:latest
+    ports:
+      - 9103:9103
+    restart: always
+
+  alerta:
+    image: alerta/alerta-web:latest
+    ports:
+      - 9080:8080
+    depends_on:
+      - alerta_mongo
+    environment:
+      - DEBUG=1  # remove this line to turn DEBUG off
+      - DATABASE_URL=mongodb://alerta_mongo:27017/monitoring
+      # - AUTH_REQUIRED=True
+      - ADMIN_USERS=admin
+      - ADMIN_PASSWORD=admin
+      - PLUGINS=remote_ip,reject,heartbeat,blackout,prometheus
+      - ALERTMANAGER_API_URL=http://alertmanager:9093
+    restart: always
+
+  alerta_mongo:
+    image: mongo:latest
+    volumes:
+      - ./data/mongodb:/data/db
+    restart: always
