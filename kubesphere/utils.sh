@@ -5,7 +5,7 @@ function getInstaller(){
     cd /kubesphere
     curl -O -k https://kubernetes.pek3b.qingstor.com/tools/kubekey/kk
     chmod +x kk
-    ./kk create cluster --with-kubesphere
+    ./kk create config --with-kubesphere
     echo '[End getInstaller]'
 }
 
