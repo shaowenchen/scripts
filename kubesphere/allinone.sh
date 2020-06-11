@@ -14,6 +14,6 @@ getInstaller
 
 # chooseModule /kubesphere/config-sample.yaml
 
-curl https://raw.githubusercontent.com/shaowenchen/scripts/master/kubesphere/allinone.yaml > allinone
+curl https://raw.githubusercontent.com/shaowenchen/scripts/master/kubesphere/allinone.yaml > allinone.yaml
 
 echo -e 'yes\n' | /kubesphere/kk create cluster -f allinone.yaml
