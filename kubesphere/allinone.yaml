@@ -1,0 +1,123 @@
+apiVersion: kubekey.kubesphere.io/v1alpha1
+kind: Cluster
+metadata:
+  name: config-sample
+spec:
+  hosts:
+  - {name: node1, address: 192.168.13.3, internalAddress: 192.168.13.3, user: root, password: Zhu9@jie}
+  roleGroups:
+    etcd:
+    - node1
+    master:
+    - node1
+    worker:
+    - node1
+  controlPlaneEndpoint:
+    domain: lb.kubesphere.local
+    address: ""
+    port: "6443"
+  kubernetes:
+    version: v1.17.6
+    imageRepo: kubesphere
+    clusterName: cluster.local
+  network:
+    plugin: calico
+    kube_pods_cidr: 10.233.64.0/18
+    kube_service_cidr: 10.233.0.0/18
+  registry:
+    registryMirrors: []
+    insecureRegistries: []
+  storage:
+    defaultStorageClass: localVolume
+    localVolume:
+      storageClassName: local
+
+
+
+---
+apiVersion: v1
+data:
+  ks-config.yaml: |
+    ---
+    local_registry: ""
+
+    persistence:
+      storageClass: ""
+    etcd:
+      monitoring: true
+      endpointIps: 192.168.13.3
+      port: 2379
+      tlsEnable: true
+
+    common:
+      mysqlVolumeSize: 20Gi
+      minioVolumeSize: 20Gi
+      etcdVolumeSize: 20Gi
+      openldapVolumeSize: 2Gi
+      redisVolumSize: 2Gi
+
+    console:
+      enableMultiLogin: True  # enable/disable multi login
+      port: 30880
+
+    monitoring:
+      prometheusReplicas: 1
+      prometheusMemoryRequest: 400Mi
+      prometheusVolumeSize: 20Gi
+      grafana:
+        enabled: true
+      notification:
+        enabled: true
+
+    logging:
+      enabled: true
+      elasticsearchMasterReplicas: 1
+      elasticsearchDataReplicas: 1
+      logsidecarReplicas: 2
+      elasticsearchMasterVolumeSize: 4Gi
+      elasticsearchDataVolumeSize: 20Gi
+      logMaxAge: 7
+      elkPrefix: logstash
+      containersLogMountedPath: ""
+      kibana:
+        enabled: true
+
+    events:
+      enabled: true
+
+    openpitrix:
+      enabled: true
+
+    devops:
+      enabled: true
+      jenkinsMemoryLim: 2Gi
+      jenkinsMemoryReq: 1500Mi
+      jenkinsVolumeSize: 8Gi
+      jenkinsJavaOpts_Xms: 512m
+      jenkinsJavaOpts_Xmx: 512m
+      jenkinsJavaOpts_MaxRAM: 2g
+      sonarqube:
+        enabled: true
+        postgresqlVolumeSize: 8Gi
+
+    servicemesh:
+      enabled: true
+
+    notification:
+      enabled: true
+
+    alerting:
+      enabled: true
+
+    metrics_server:
+      enabled: true
+
+    weave_scope:
+      enabled: true
+
+kind: ConfigMap
+metadata:
+  name: ks-installer
+  namespace: kubesphere-system
+  labels:
+    version: v3.0.0
