@@ -1,3 +1,5 @@
+curl -s -L https://raw.githubusercontent.com/shaowenchen/scripts/master/kubesphere/preinstall.sh | bash
+
 source <(curl -s https://raw.githubusercontent.com/shaowenchen/scripts/master/kubesphere/utils.sh)
 
 for i in $*
