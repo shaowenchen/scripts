@@ -13,12 +13,12 @@ spec:
     worker:
     - node1
   controlPlaneEndpoint:
-    domain: lb.kubesphere.local
+    domain: ks-allinone
     address: ""
     port: "6443"
   kubernetes:
     version: v1.17.6
-    imageRepo: kubesphere
+    imageRepo: core.harbor.dev.chenshaowen.com/kubesphere
     clusterName: cluster.local
   network:
     plugin: calico
@@ -26,7 +26,7 @@ spec:
     kube_service_cidr: 10.233.0.0/18
   registry:
     registryMirrors: []
-    insecureRegistries: []
+    insecureRegistries: ["core.harbor.dev.chenshaowen.com"]
   storage:
     defaultStorageClass: localVolume
     localVolume:

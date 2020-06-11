@@ -23,7 +23,11 @@ elif [[ $os_info =~ "CentOS" || $os_info =~ "Red Hat" ]]; then
                    git \
                    vim \
                    sshpass \
-                   openssh-clients
+                   openssh-clients \
+                   socat \
+                   conntrack \
+                   openssl
+
 
 else
     echo "It doesn't support the current operating system!"
