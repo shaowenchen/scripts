@@ -96,9 +96,6 @@ data:
       jenkinsJavaOpts_Xms: 512m
       jenkinsJavaOpts_Xmx: 512m
       jenkinsJavaOpts_MaxRAM: 2g
-      sonarqube:
-        enabled: true
-        postgresqlVolumeSize: 8Gi
 
     servicemesh:
       enabled: true
