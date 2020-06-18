@@ -4,6 +4,7 @@ services:
     mongodb:
       image: mongo:4.0.12
       container_name: mongodb4012
+      restart: always
       ports:
         - 27017:27017
       environment:

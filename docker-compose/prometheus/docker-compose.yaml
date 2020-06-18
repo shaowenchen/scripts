@@ -3,6 +3,7 @@ version: '3.0'
 services:
   prometheus:
     image: prom/prometheus:latest
+    restart: always
     volumes:
       - ./config:/prometheus
       - ./data/prometheus:/data
@@ -17,6 +18,7 @@ services:
 
   alertmanager:
     image: prom/alertmanager:latest
+    restart: always
     volumes:
       - ./config:/prometheus
       - ./data/alertmanager:/data
@@ -28,12 +30,14 @@ services:
 
   node:
     image: prom/node-exporter:latest
+    restart: always
     ports:
       - 9100:9100
     restart: always
 
   cadvisor:
     image: google/cadvisor:latest
+    restart: always
     ports:
       - 9880:8080
     volumes:
@@ -44,12 +48,14 @@ services:
 
   collectd:
     image: prom/collectd-exporter:latest
+    restart: always
     ports:
       - 9103:9103
     restart: always
 
   alerta:
     image: alerta/alerta-web:latest
+    restart: always
     ports:
       - 9080:8080
     depends_on:
@@ -66,6 +72,7 @@ services:
 
   alerta_mongo:
     image: mongo:latest
+    restart: always
     volumes:
       - ./data/mongodb:/data/db
     restart: always

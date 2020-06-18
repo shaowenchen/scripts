@@ -2,6 +2,7 @@ version: '2'
 services:
   portainer:
     image: portainer/portainer:latest
+    restart: always
     command: -H unix:///var/run/docker.sock
     ports:
       - 9000:9000

@@ -3,6 +3,7 @@ services:
   artifactory:
     image: docker.bintray.io/jfrog/artifactory-oss:latest
     container_name: artifactory
+    restart: always
     network_mode: "bridge"
     ports:
      - 8081:8081

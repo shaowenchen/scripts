@@ -3,6 +3,7 @@ version: '2'
 services:
   sonarqube:
     image: sonarqube:7.1
+    restart: always
     ports:
         - "9000:9000"
     links:
@@ -12,6 +13,7 @@ services:
 
   postgres:
     image: postgres:9.6.15
+    restart: always
     volumes:
       - ./data:/var/lib/postgresql/data
     ports:
