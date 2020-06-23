@@ -4,8 +4,10 @@ services:
   rjupyter:
     image: jupyter/r-notebook:latest
     restart: always
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
     ports:
       - 8884:8888
     volumes:
-      - ./data:/home/jovyan/
-      - ./data/runtime:/home/jovyan/.local/share/jupyter/runtime/
+      - ./data:/home/jovyan/:rw
+      - ./data/runtime:/home/jovyan/.local/share/jupyter/runtime/:rw
