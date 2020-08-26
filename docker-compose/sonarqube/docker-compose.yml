@@ -2,7 +2,7 @@ version: '2'
 
 services:
   sonarqube:
-    image: sonarqube:7.1
+    image: sonarqube:7.9.4-community
     restart: always
     ports:
         - "9000:9000"

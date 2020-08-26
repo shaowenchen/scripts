@@ -1,9 +1,0 @@
-version: '2'
-services:
-  svn-server:
-    image: elleflorio/svn-server:ui
-    container_name: svn-server
-    ports:
-      - "8690:80"
-      - "3690:3690"
-    restart: always
